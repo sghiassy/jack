@@ -1,6 +1,6 @@
 package com.shaheenghiassy.jack
 
-data class Counter(val value: Int = 0) {
-    fun increment(): Counter = copy(value = value + 1)
-    fun decrement(): Counter = copy(value = value - 1)
+data class CounterModel(val value: Int = 420) {
+    fun increment(): CounterModel = copy(value = value + 1)
+    fun decrement(): CounterModel = copy(value = value - 1)
 }
