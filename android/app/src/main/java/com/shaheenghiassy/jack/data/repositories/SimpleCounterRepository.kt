@@ -1,6 +1,6 @@
-package com.shaheenghiassy.jack.data
+package com.shaheenghiassy.jack.data.repositories
 
-import com.shaheenghiassy.jack.CounterModel
+import com.shaheenghiassy.jack.data.models.CounterModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 

@@ -1,4 +1,4 @@
-package com.shaheenghiassy.jack.data.datasource
+package com.shaheenghiassy.jack.data.datasources
 
 import android.content.Context
 import java.io.File

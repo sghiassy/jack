@@ -1,4 +1,4 @@
-package com.shaheenghiassy.jack.data.datasource
+package com.shaheenghiassy.jack.data.datasources
 
 import com.apollographql.apollo3.ApolloClient
 import kotlinx.coroutines.flow.Flow
