@@ -17,6 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.mainview.MainViewUIState
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
+import com.shaheenghiassy.jack.usecase.stateToString
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,14 +42,8 @@ fun Greeting(modifier: Modifier = Modifier) {
         initialValue = MainViewUIState.Loading
     )
 
-    val daCount:String = when(val state = uiState) {
-        is MainViewUIState.Empty -> "Empty"
-        is MainViewUIState.Loading -> "Loading"
-        is MainViewUIState.Loaded -> state.model.value.toString()
-    }
-
     Text(
-        text = daCount,
+        text = stateToString(uiState),
         modifier = modifier
     )
 }
