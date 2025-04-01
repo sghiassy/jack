@@ -3,7 +3,7 @@ package com.shaheenghiassy.jack.data.datasources
 import android.content.Context
 import java.io.File
 
-class LocalCounterDataSource(private val context: Context) {
+class LocalCounterDataSource(context: Context) {
 
     private val file: File = File(context.filesDir, "counter.txt")
 
@@ -13,8 +13,8 @@ class LocalCounterDataSource(private val context: Context) {
         }
     }
 
-    fun readCounter(): Int {
-        return file.readText().toIntOrNull() ?: 0
+    fun readCounter(): Int? {
+        return file.readText().toIntOrNull()
     }
 
     fun writeCounter(value: Int) {

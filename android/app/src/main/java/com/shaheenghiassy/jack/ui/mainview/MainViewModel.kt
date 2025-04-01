@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
-    private val counterRepository = SimpleCounterRepository()
+    private val counterRepository = SimpleCounterRepository(application.applicationContext)
     val uiState: Flow<MainViewUIState.Loaded> = counterRepository.observeCounter()
         .map { ctr ->
             MainViewUIState.Loaded(ctr.increment())
