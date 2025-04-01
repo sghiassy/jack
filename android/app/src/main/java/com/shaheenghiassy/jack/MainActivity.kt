@@ -24,7 +24,6 @@ class MainActivity : ComponentActivity() {
             JACKTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Android",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -34,16 +33,16 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle(
         initialValue = MainViewUIState.Loading
     )
 
-    val daCount:String = when(val z = uiState) {
+    val daCount:String = when(val state = uiState) {
         is MainViewUIState.Empty -> "Empty"
         is MainViewUIState.Loading -> "Loading"
-        is MainViewUIState.Loaded -> z.model.value.toString()
+        is MainViewUIState.Loaded -> state.model.value.toString()
     }
 
     Text(
@@ -56,6 +55,6 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     JACKTheme {
-        Greeting("Android")
+        Greeting()
     }
 }
