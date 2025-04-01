@@ -1,4 +1,4 @@
-package com.shaheenghiassy.jack
+package com.shaheenghiassy.jack.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,6 +14,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.shaheenghiassy.jack.MainViewModel
+import com.shaheenghiassy.jack.MainViewUIState
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
 
 class MainActivity : ComponentActivity() {
