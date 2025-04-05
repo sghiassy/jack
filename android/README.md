@@ -13,3 +13,10 @@ The combination of these technologies are based almost entirely on what I'm usin
   - caching
   - offline first
 - Dependency Injection (Ultralight)
+
+## TODOs
+- Threading
+- Dependency Injection
+- Theming
+- Counter Functionality
+- Connect to server
