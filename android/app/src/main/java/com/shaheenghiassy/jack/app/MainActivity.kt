@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(modifier: Modifier = Modifier) {
     val viewModel: MainViewModel = viewModel()
-    val uiState by viewModel.uiState.collectAsStateWithLifecycle(
+    val uiState by viewModel.hotRepoState.collectAsStateWithLifecycle(
         initialValue = MainViewUIState.Loading
     )
 
