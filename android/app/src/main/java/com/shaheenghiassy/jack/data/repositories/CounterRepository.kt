@@ -8,11 +8,11 @@ class CounterRepository(
     private val remoteDataSource: RemoteCounterDataSource
 ) {
 
-    fun getCounter(): Int? {
+    suspend fun getCounter(): Int? {
         return localDataSource.readCounter()
     }
 
-    fun incrementCounter() {
+    suspend fun incrementCounter() {
         localDataSource.readCounter()?.let { currentValue ->
             val newValue = currentValue + 1
             localDataSource.writeCounter(newValue)
@@ -20,7 +20,7 @@ class CounterRepository(
         }
     }
 
-    fun decrementCounter() {
+    suspend fun decrementCounter() {
         localDataSource.readCounter()?.let { currentValue ->
             val newValue = currentValue - 1
             localDataSource.writeCounter(newValue)

@@ -1,6 +1,8 @@
 package com.shaheenghiassy.jack.data.datasources
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 
 class LocalCounterDataSource(context: Context) {
@@ -13,11 +15,15 @@ class LocalCounterDataSource(context: Context) {
         }
     }
 
-    fun readCounter(): Int? {
-        return file.readText().toIntOrNull()
+    suspend fun readCounter(): Int? {
+        return withContext(Dispatchers.IO) {
+            file.readText().toIntOrNull()
+        }
     }
 
-    fun writeCounter(value: Int) {
-        file.writeText(value.toString())
+    suspend fun writeCounter(value: Int) {
+        withContext(Dispatchers.IO) {
+            file.writeText(value.toString())
+        }
     }
 }

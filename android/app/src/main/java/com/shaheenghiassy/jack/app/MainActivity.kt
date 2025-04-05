@@ -12,7 +12,6 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.shaheenghiassy.jack.ui.mainview.MainView
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
-import com.shaheenghiassy.jack.ui.mainview.MainViewUIState
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,14 +22,10 @@ class MainActivity : ComponentActivity() {
             JACKTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     val viewModel: MainViewModel = viewModel()
-                    val uiState by viewModel.uiState.collectAsStateWithLifecycle(
-                        initialValue = MainViewUIState.Loading
-                    )
+                    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                     MainView(innerPadding, uiState, viewModel)
                 }
             }
         }
     }
-
-
 }

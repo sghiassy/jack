@@ -21,10 +21,6 @@ class SimpleCounterRepository(context: Context) {
         _myFlow.emit(CounterModel(valueFromDisk))
     }
 
-    fun observeCounter(): Flow<CounterModel> {
-        return myFlow
-    }
-
     suspend fun increment() {
         currentCounter++
         localCounter.writeCounter(currentCounter)
