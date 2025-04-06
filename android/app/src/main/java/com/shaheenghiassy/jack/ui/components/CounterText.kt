@@ -1,4 +1,4 @@
-package com.shaheenghiassy.jack.ui.mainview
+package com.shaheenghiassy.jack.ui.components
 
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
