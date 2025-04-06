@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class LocalCounterDataSource(context: Context) {
+class DiskRepository(context: Context) {
 
     private val file: File = File(context.filesDir, "counter.txt")
 

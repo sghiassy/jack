@@ -1,10 +1,10 @@
 package com.shaheenghiassy.jack.data.repositories
 
-import com.shaheenghiassy.jack.data.datasources.LocalCounterDataSource
+import com.shaheenghiassy.jack.data.datasources.DiskRepository
 import com.shaheenghiassy.jack.data.datasources.RemoteCounterDataSource
 
 class CounterRepository(
-    private val localDataSource: LocalCounterDataSource,
+    private val localDataSource: DiskRepository,
     private val remoteDataSource: RemoteCounterDataSource
 ) {
 
