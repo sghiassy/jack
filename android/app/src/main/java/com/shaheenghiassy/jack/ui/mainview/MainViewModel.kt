@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.shaheenghiassy.jack.data.repositories.SimpleCounterRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
@@ -24,13 +25,13 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun increment() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             counterRepository.increment()
         }
     }
 
     fun decrement() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             counterRepository.decrement()
         }
     }

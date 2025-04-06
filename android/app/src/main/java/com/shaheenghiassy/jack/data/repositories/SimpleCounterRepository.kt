@@ -10,28 +10,25 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 class SimpleCounterRepository(context: Context) {
     private val localCounter = LocalCounterDataSource(context)
-    private var currentCounter: Int = -1
-
     private val _myFlow = MutableSharedFlow<CounterModel>()
     val myFlow: Flow<CounterModel> = _myFlow.asSharedFlow()
 
     suspend fun initialize() {
         val valueFromDisk = localCounter.readCounter() ?: 0
-        currentCounter = valueFromDisk
         _myFlow.emit(CounterModel(valueFromDisk))
     }
 
     suspend fun increment() {
-        currentCounter++
-        localCounter.writeCounter(currentCounter)
         val valueFromDisk = localCounter.readCounter() ?: 0
-        _myFlow.emit(CounterModel(valueFromDisk))
+        val newValue = valueFromDisk + 1
+        localCounter.writeCounter(newValue)
+        _myFlow.emit(CounterModel(newValue))
     }
 
     suspend fun decrement() {
-        currentCounter--
-        localCounter.writeCounter(currentCounter)
         val valueFromDisk = localCounter.readCounter() ?: 0
-        _myFlow.emit(CounterModel(valueFromDisk))
+        val newValue = valueFromDisk - 1
+        localCounter.writeCounter(newValue)
+        _myFlow.emit(CounterModel(newValue))
     }
 }
