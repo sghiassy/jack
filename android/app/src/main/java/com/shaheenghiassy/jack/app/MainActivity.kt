@@ -18,11 +18,12 @@ import com.shaheenghiassy.jack.ui.mainview.MainView
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity @Inject constructor() : ComponentActivity() {
 
-    private val myBroadcastReceiver = MyBroadcastReceiver()
+    @Inject lateinit var myBroadcastReceiver: MyBroadcastReceiver
 
     @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
