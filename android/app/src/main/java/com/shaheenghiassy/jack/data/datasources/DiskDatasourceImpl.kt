@@ -1,11 +1,12 @@
 package com.shaheenghiassy.jack.data.datasources
 
 import android.content.Context
+import com.shaheenghiassy.jack.domain.datasource.DiskDatasource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class DiskRepository(context: Context) {
+class DiskDatasourceImpl(context: Context): DiskDatasource {
 
     private val file: File = File(context.filesDir, "counter.txt")
 
@@ -15,13 +16,13 @@ class DiskRepository(context: Context) {
         }
     }
 
-    suspend fun readCounter(): Int? {
+    override suspend fun readCounter(): Int? {
         return withContext(Dispatchers.IO) {
             file.readText().toIntOrNull()
         }
     }
 
-    suspend fun writeCounter(value: Int) {
+    override suspend fun writeCounter(value: Int) {
         withContext(Dispatchers.IO) {
             file.writeText(value.toString())
         }
