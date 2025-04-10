@@ -1,9 +1,13 @@
 package com.shaheenghiassy.jack.app
 
+import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
@@ -15,9 +19,15 @@ import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
 
 class MainActivity : ComponentActivity() {
+
+    private val myBroadcastReceiver = MyBroadcastReceiver()
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val filter = IntentFilter("TEST_ACTION")
+        registerReceiver(myBroadcastReceiver, filter, RECEIVER_EXPORTED)
         setContent {
             JACKTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
@@ -27,5 +37,11 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d("shizz", "MyBroadcastReceiver is being unregistered")
+        unregisterReceiver(myBroadcastReceiver)
     }
 }

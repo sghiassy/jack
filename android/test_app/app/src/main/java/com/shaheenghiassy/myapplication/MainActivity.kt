@@ -1,6 +1,7 @@
 package com.shaheenghiassy.myapplication
 
 import android.R.attr.name
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -17,6 +18,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.shaheenghiassy.myapplication.Greeting
 import com.shaheenghiassy.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +37,11 @@ class MainActivity : ComponentActivity() {
                                 modifier = Modifier.padding(innerPadding)
                             )
                             Button({
-                                Log.d("shizz", "Button Pressed")
+                                val intent  = Intent("TEST_ACTION")
+                                intent.setPackage("com.shaheenghiassy.jack")
+                                sendBroadcast(intent)
+                                Log.d("shizz", "Button Pressed in Test App")
+
                             }) {
                                 Text(
                                     text = "Send Broadcast"
