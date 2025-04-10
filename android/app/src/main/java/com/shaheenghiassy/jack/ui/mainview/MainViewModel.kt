@@ -3,16 +3,18 @@ package com.shaheenghiassy.jack.ui.mainview
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.shaheenghiassy.jack.data.repositories.SimpleCounterRepository
+import com.shaheenghiassy.jack.domain.repository.CounterRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class MainViewModel(application: Application): AndroidViewModel(application) {
-    private val counterRepository = SimpleCounterRepository(application.applicationContext)
+@HiltViewModel
+class MainViewModel @Inject constructor(application: Application, private val counterRepository: CounterRepository): AndroidViewModel(application) {
     val uiState: StateFlow<MainViewUIState> = counterRepository.myFlow
         .map { ctr ->
             MainViewUIState.Loaded(ctr)
