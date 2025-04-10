@@ -32,4 +32,11 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
         diskRepository.writeCounter(newValue)
         _myFlow.emit(CounterModel(newValue))
     }
+
+    override suspend fun change(newValue: Int) {
+        val valueFromDisk = diskRepository.readCounter() ?: 0
+        val changedValue = valueFromDisk + newValue
+        diskRepository.writeCounter(changedValue)
+        _myFlow.emit(CounterModel(changedValue))
+    }
 }

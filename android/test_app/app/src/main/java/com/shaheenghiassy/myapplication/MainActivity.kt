@@ -14,7 +14,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -22,6 +27,7 @@ import com.shaheenghiassy.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+//        var numberInput:String = "0"
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
@@ -29,22 +35,34 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Column(
-                            horizontalAlignment = Alignment.CenterHorizontally //Center the contents horizontally
+                            horizontalAlignment = Alignment.CenterHorizontally // Center the contents horizontally
                         ) {
                             Greeting(
                                 name = "JACK Test App",
                                 modifier = Modifier.padding(innerPadding)
                             )
-                            Button({
-                                val intent  = Intent("TEST_ACTION")
-                                intent.setPackage("com.shaheenghiassy.jack")
-                                sendBroadcast(intent)
-                                Log.d("shizz", "Button Pressed in Test App")
 
+                            // State variable to hold the text input from the user.
+                            var numberInput by remember { mutableStateOf("") }
+
+                            // TextField for number input
+                            TextField(
+                                value = numberInput,
+                                onValueChange = { numberInput = it },
+                                label = { Text("Enter a number") }
+                            )
+
+                            Button(onClick = {
+                                val number = numberInput.toIntOrNull() ?: 1
+
+                                val intent = Intent("TEST_ACTION").apply {
+                                    setClassName("com.shaheenghiassy.jack", "com.shaheenghiassy.jack.app.MyBroadcastReceiver")
+                                    putExtra("count", number)
+                                }
+                                sendBroadcast(intent)
+                                Log.d("shizz", "Button Pressed in Test App with number: $number")
                             }) {
-                                Text(
-                                    text = "Send Broadcast"
-                                )
+                                Text(text = "Send Broadcast")
                             }
                         }
                     }

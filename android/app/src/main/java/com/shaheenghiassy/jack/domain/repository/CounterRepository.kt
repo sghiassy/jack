@@ -12,4 +12,6 @@ interface CounterRepository {
     suspend fun increment()
 
     suspend fun decrement()
+
+    suspend fun change(newValue:Int)
 }
