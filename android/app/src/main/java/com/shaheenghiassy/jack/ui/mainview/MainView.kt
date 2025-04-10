@@ -30,7 +30,7 @@ fun MainView(
         contentAlignment = Alignment.Center // Center the contents inside the Box
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally //Center the contents horizontally
+            horizontalAlignment = Alignment.CenterHorizontally // Center the contents horizontally
         ) {
             CounterText(
                 modifier = Modifier.padding(15.dp),
@@ -38,9 +38,9 @@ fun MainView(
             )
             Row(
                 modifier = Modifier
-                    .fillMaxWidth() //Make the row take up the maximum space horizontally.
+                    .fillMaxWidth() // Make the row take up the maximum space horizontally.
                     .padding(15.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly //Distribute the buttons evenly
+                horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
             ) {
                 Button(onClick = {
                     viewModel.increment()
