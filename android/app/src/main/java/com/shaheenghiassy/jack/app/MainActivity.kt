@@ -17,7 +17,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.shaheenghiassy.jack.ui.mainview.MainView
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val myBroadcastReceiver = MyBroadcastReceiver()
