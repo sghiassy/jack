@@ -27,7 +27,6 @@ import com.shaheenghiassy.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-//        var numberInput:String = "0"
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {

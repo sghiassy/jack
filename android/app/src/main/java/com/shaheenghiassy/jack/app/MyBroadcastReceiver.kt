@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 
 class MyBroadcastReceiver(): BroadcastReceiver() {
 
+    private val DEFAULT_VALUE = 1
     private val receiverScope = CoroutineScope(Dispatchers.IO)
 
     init {
@@ -20,7 +21,7 @@ class MyBroadcastReceiver(): BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {
         if (context !== null && intent !== null) {
             val counterRepository = CounterRepositoryImpl(context)
-            val counterValue = intent.getIntExtra("count", 1) // default to 1
+            val counterValue = intent.getIntExtra("count", DEFAULT_VALUE)
             receiverScope.launch {
                 Log.d("shizz", "i haz cheezburger with value $counterValue")
                 counterRepository.change(counterValue)
