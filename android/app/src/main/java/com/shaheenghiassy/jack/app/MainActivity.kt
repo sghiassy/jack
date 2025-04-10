@@ -29,7 +29,7 @@ class MainActivity @Inject constructor() : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        val filter = IntentFilter("TEST_ACTION")
+        val filter = IntentFilter("CHANGE_VALUE")
         registerReceiver(myBroadcastReceiver, filter, RECEIVER_EXPORTED)
         setContent {
             JACKTheme {

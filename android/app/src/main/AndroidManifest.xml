@@ -27,7 +27,7 @@
             android:name=".app.MyBroadcastReceiver"
             android:exported="true">
             <intent-filter>
-                <action android:name="TEST_ACTION" />
+                <action android:name="CHANGE_VALUE" />
             </intent-filter>
         </receiver>
     </application>

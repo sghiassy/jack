@@ -54,7 +54,7 @@ class MainActivity : ComponentActivity() {
                             Button(onClick = {
                                 val number = numberInput.toIntOrNull() ?: 1
 
-                                val intent = Intent("TEST_ACTION").apply {
+                                val intent = Intent("CHANGE_VALUE").apply {
                                     setClassName("com.shaheenghiassy.jack", "com.shaheenghiassy.jack.app.MyBroadcastReceiver")
                                     putExtra("count", number)
                                 }
