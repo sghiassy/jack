@@ -18,7 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.shaheenghiassy.myapplication.Greeting
 import com.shaheenghiassy.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
