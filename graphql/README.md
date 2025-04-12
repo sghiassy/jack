@@ -1,6 +1,6 @@
-# Backend Implementation
+# GraphQL
 
-## Basket of Technologies
+From this YouTube Series: https://youtu.be/xMCnDesBggM?si=sP5deZgoDfuYYeyl
 
 ### Review Query
 

@@ -93,5 +93,4 @@ const { url } = await startStandaloneServer(server, {
     port: PORT
 }});
 
-console.log('Server ready at post', PORT)
-console.log('http://localhost:' + PORT)
+console.log(`🚀  Server ready at: ${url}`);
