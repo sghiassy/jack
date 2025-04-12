@@ -59,6 +59,14 @@ const resolvers = {
     deleteGame(parent, args, context) {
       games = games.filter(game => game.id !== args.id)
       return games
+    },
+    addGame(parent, args, context) {
+      let newGame = {
+        ...args.game,
+        id: Math.floor(Math.random() * 10000).toString()
+      }
+      games.push(newGame)
+      return newGame
     }
   }
 };
