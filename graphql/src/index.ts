@@ -4,7 +4,10 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 const PORT = 4000;
 
 //  db
-import { games, authors, reviews } from "./_db.js";
+import {db} from "./_db.js";
+var games = db.games
+var authors = db.authors
+var reviews = db.reviews
 
 // types
 import { typeDefs } from "./schema.js";
@@ -12,19 +15,19 @@ import { typeDefs } from "./schema.js";
 const resolvers = {
   Query: {
     games() {
-      return games;
+      return games
     },
     game(parent, args, context) {
       return games.find(game => game.id === args.id)
     },
     reviews() {
-      return reviews;
+      return reviews
     },
     review(parent, args, context) {
-      return reviews.find((review) => review.id === args.id);
+      return reviews.find((review) => review.id === args.id)
     },
     authors() {
-      return authors;
+      return authors
     },
     author(parent, args, context) {
       return authors.find(author => author.id === args.id)
@@ -39,7 +42,7 @@ const resolvers = {
 
   Author: {
     reviews(parent, args, context) {
-      return reviews.filter((review) => review.author_id === parent.id);
+      return reviews.filter((review) => review.author_id === parent.id)
     }
   },
 
@@ -51,6 +54,13 @@ const resolvers = {
       return games.find(game => game.id === parent.game_id)
     }
   },
+
+  Mutation: {
+    deleteGame(parent, args, context) {
+      games = games.filter(game => game.id !== args.id)
+      return games
+    }
+  }
 };
 
 // server setup
