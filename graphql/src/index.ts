@@ -34,4 +34,4 @@ const { url } = await startStandaloneServer(server, {
     port: PORT
 }});
 
-console.log('SErver ready at post', PORT)
+console.log('Server ready at post', PORT)
