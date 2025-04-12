@@ -30,6 +30,27 @@ const resolvers = {
       return authors.find(author => author.id === args.id)
     },
   },
+
+  Game: {
+    reviews(parent, args, context) {
+      return reviews.filter(review => review.game_id === parent.id)
+    }
+  },
+
+  Author: {
+    reviews(parent, args, context) {
+      return reviews.filter((review) => review.author_id === parent.id);
+    }
+  },
+
+  Review: {
+    author(parent, args, context) {
+      return authors.find(author => author.id === parent.author_id)
+    },
+    game(parent, args, context) {
+      return games.find(game => game.id === parent.game_id)
+    }
+  },
 };
 
 // server setup
@@ -44,3 +65,4 @@ const { url } = await startStandaloneServer(server, {
 }});
 
 console.log('Server ready at post', PORT)
+console.log('http://localhost:' + PORT)
