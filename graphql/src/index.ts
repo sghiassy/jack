@@ -12,16 +12,25 @@ import { typeDefs } from "./schema.js";
 const resolvers = {
   Query: {
     games() {
-      return games
+      return games;
+    },
+    game(parent, args, context) {
+      return games.find(game => game.id === args.id)
     },
     reviews() {
-      return reviews
+      return reviews;
+    },
+    review(parent, args, context) {
+      return reviews.find((review) => review.id === args.id);
     },
     authors() {
-      return authors
-    }
-  }
-}
+      return authors;
+    },
+    author(parent, args, context) {
+      return authors.find(author => author.id === args.id)
+    },
+  },
+};
 
 // server setup
 const server = new ApolloServer({
