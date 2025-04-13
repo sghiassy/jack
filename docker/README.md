@@ -34,19 +34,20 @@ So now `docker ps` responds with the info from the Server!
 ### Build a new image
 
 ```bash
-docker context use defaults
-docker build --platform linux/amd64 -t sghiassy/jack .
+yarn docker:build:image
 ```
 
 ### Push to Dockerhub
 
-For now I'm just using Docker Mac Desktop app
+Run
+```bash
+yarn docker:push
+```
 
 ## Deploying to the server
 
 ```bash
-docker context use hostinger
-docker stack deploy -c docker-compose.yml myapp
+yarn docker:deploy
 ```
 
 ## Docker Commands
