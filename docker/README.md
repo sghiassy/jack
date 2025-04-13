@@ -32,8 +32,11 @@ So now `docker ps` responds with the info from the Server!
 ## Pushing a new Docker image
 
 ### Build a new image
-`docker context use default`
-`docker build --platform linux/amd64 -t sghiassy/jack .`
+
+```bash
+docker context use defaults
+docker build --platform linux/amd64 -t sghiassy/jack .
+```
 
 ### Push to Dockerhub
 
@@ -41,8 +44,10 @@ For now I'm just using Docker Mac Desktop app
 
 ## Deploying to the server
 
-`docker context use hostinger`
-`docker stack deploy -c docker-compose.yml myapp`
+```bash
+docker context use hostinger
+docker stack deploy -c docker-compose.yml myapp
+```
 
 ## Docker Commands
 
@@ -50,3 +55,105 @@ List containers: `docker stack ls`
 Service info: `docker stack services myapp`
 Logs: `docker service ps myapp_web --no-trunc`
 Logs: `docker service logs myapp_web`
+
+
+
+From this YouTube Series: https://youtu.be/xMCnDesBggM?si=sP5deZgoDfuYYeyl
+
+### Review Query
+
+```graphql
+query ReviewQuery($id:ID!) {
+  review(id:$id) {
+    rating
+    game {
+      title
+      platform
+      reviews {
+        rating
+      }
+    }
+    author {
+      name,
+      verified
+    }
+  }
+}
+```
+Input
+```json
+{
+  "id": "1"
+}
+```
+
+### Delete Mutation
+
+```graphql
+mutation DeleteMutation($id: ID!) {
+  deleteGame(id: $id) {
+    id
+    title
+    platform
+  }
+}
+```
+Input
+```json
+{
+  "id": "4"
+}
+```
+### Add Mutation
+```graphql
+mutation AddMutation($game: AddGameInput!) {
+  addGame(game: $game) {
+    id
+    title
+    platform
+  }
+}
+```
+Input
+```json
+{
+  "game": {
+    "title": "a new game",
+    "platform": ["switch", "ps5"]
+  }
+}
+```
+### Games Query
+```graphql
+query GamesQuery {
+  games {
+    id
+    title
+  }
+}
+```
+
+```bash
+http POST http://localhost:4000/graphql \
+  query='query GamesQuery { games { id title } }'
+```
+### Update Game
+
+```graphql
+mutation UpdateGame($id: ID!, $edits: EditGameInput!) {
+  updateGame(id: $id, edits: $edits) {
+    id,
+    title,
+    platform
+  }
+}
+```
+Input
+```json
+{
+  "id": "5",
+  "edits": {
+    "title": "updated title"
+  }
+}
+```

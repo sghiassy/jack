@@ -1,7 +1,7 @@
 import { ApolloServer } from "@apollo/server";
 import { startStandaloneServer } from "@apollo/server/standalone";
 
-const PORT = 4000;
+const PORT = 3000;
 
 //  db
 import {db} from "./_db.js";
