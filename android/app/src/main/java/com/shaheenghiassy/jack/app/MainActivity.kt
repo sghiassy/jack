@@ -16,7 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.apollographql.apollo.ApolloClient
-import com.ghiassy.jack.GamesQuery
+import com.ghiassy.jack.CounterQuery
 import com.shaheenghiassy.jack.ui.mainview.MainView
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
@@ -47,8 +47,8 @@ class MainActivity @Inject constructor() : ComponentActivity() {
                         .serverUrl("https://jack.ghiassy.com/graphql")
                         .build()
                     LaunchedEffect(Unit) {
-                        val response = apolloClient.query(GamesQuery()).execute()
-                        Log.d("GamesQuery", "Success ${response.data}")
+                        val response = apolloClient.query(CounterQuery()).execute()
+                        Log.d("CounterQuery", "Success ${response.data}")
                     }
 
                 }

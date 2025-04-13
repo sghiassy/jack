@@ -30,6 +30,10 @@ type Author {
   reviews: [Review!]
 }
 
+type Counter {
+  value: Int!
+}
+
 type Query {
   reviews: [Review]
 
@@ -42,6 +46,8 @@ type Query {
   authors: [Author]
 
   author(id: ID!): Author
+
+  counter: Counter
 }
 
 type Mutation {
@@ -50,6 +56,12 @@ type Mutation {
   addGame(game: AddGameInput!): Game
 
   updateGame(id: ID!, edits: EditGameInput): Game
+
+  incrementCounter(by: Int): Counter
+
+  decrementCounter(by: Int): Counter
+
+  changeCounter(newValue: Int!): Counter
 }
 
 input AddGameInput {

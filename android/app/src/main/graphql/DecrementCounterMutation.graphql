@@ -1,0 +1,5 @@
+mutation DecrementCounter($by: Int) {
+    decrementCounter(by: $by) {
+        value
+    }
+}
