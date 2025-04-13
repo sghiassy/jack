@@ -1,0 +1,5 @@
+mutation ChangeCounter($newValue: Int!) {
+    changeCounter(newValue: $newValue) {
+        value
+    }
+}

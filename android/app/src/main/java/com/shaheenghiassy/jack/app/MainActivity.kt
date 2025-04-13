@@ -10,13 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.apollographql.apollo.ApolloClient
-import com.ghiassy.jack.CounterQuery
 import com.shaheenghiassy.jack.ui.mainview.MainView
 import com.shaheenghiassy.jack.ui.mainview.MainViewModel
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
@@ -40,17 +37,6 @@ class MainActivity @Inject constructor() : ComponentActivity() {
                     val viewModel: MainViewModel = viewModel()
                     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
                     MainView(innerPadding, uiState, viewModel)
-
-
-
-                    val apolloClient = ApolloClient.Builder()
-                        .serverUrl("https://jack.ghiassy.com/graphql")
-                        .build()
-                    LaunchedEffect(Unit) {
-                        val response = apolloClient.query(CounterQuery()).execute()
-                        Log.d("CounterQuery", "Success ${response.data}")
-                    }
-
                 }
             }
         }
