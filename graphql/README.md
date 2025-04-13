@@ -74,6 +74,11 @@ query GamesQuery {
   }
 }
 ```
+
+```bash
+http POST http://localhost:4000/graphql \
+  query='query GamesQuery { games { id title } }'
+```
 ### Update Game
 
 ```graphql

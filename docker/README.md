@@ -2,8 +2,7 @@
 
 Following series at: https://www.youtube.com/watch?v=ZmL46xVdYzM
 
-
-jack.yt
+`jack.ghiassy.com`
 
 ## Access Server
 
