@@ -5,14 +5,19 @@ Following series at: https://www.youtube.com/watch?v=ZmL46xVdYzM
 
 jack.yt
 
+## Access Server
+
+`ssh root@168.231.65.34`
 
 ## Server Setup
 
+### Install Docker
+
 When setting up a new VPS, you need to install Docker. Just follow the instructions at:  https://docs.docker.com/engine/install/ubuntu/
 
-### Access Server
+### Copy over Caddyfile
 
-ssh root@168.231.65.34
+`scp -i ~/.ssh/shaheen_ed25519 Caddyfile root@jack.ghiassy.com:/root`
 
 ## Dev Setup
 
