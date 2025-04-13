@@ -5,16 +5,20 @@ import android.util.Log
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.cache.http.httpCache
 import com.apollographql.apollo.cache.http.httpDoNotStore
+import com.apollographql.apollo.network.okHttpClient
 import com.ghiassy.jack.ChangeCounterMutation
 import com.ghiassy.jack.CounterQuery
 import com.shaheenghiassy.jack.domain.datasource.DiskDatasource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
 import java.io.File
 
 class APIDatasourceImpl(context: Context):DiskDatasource {
 
     private val cacheFile: File = File(context.filesDir, "apolloCache")
+
+    val okHttpClient = OkHttpClient.Builder().build()
 
     val apolloClient = ApolloClient.Builder()
         .serverUrl("https://jack.ghiassy.com/graphql")
@@ -22,7 +26,12 @@ class APIDatasourceImpl(context: Context):DiskDatasource {
             directory = cacheFile, // Use a dedicated directory for the cache
             maxSize = 100 * 1024 * 1024 // Configure a max size of 100MB
         )
+        .okHttpClient(okHttpClient)
         .build()
+
+
+
+
 
     override suspend fun readCounter(): Int? {
         return withContext(Dispatchers.IO) {
@@ -35,6 +44,8 @@ class APIDatasourceImpl(context: Context):DiskDatasource {
             Log.d("shizz", "readCounter ${response.data}")
             response.data?.counter?.value
         }
+
+
 
     }
 
