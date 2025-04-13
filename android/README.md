@@ -20,3 +20,14 @@ The combination of these technologies are based almost entirely on what I'm usin
 - Theming
 - Counter Functionality
 - Connect to server
+
+
+## GraphQL
+
+To download new server definitions
+
+`./gradlew :app:downloadServiceApolloSchemaFromIntrospection`
+
+To update the GraphQL Models locally
+
+`./gradlew app:generateApolloSources`
