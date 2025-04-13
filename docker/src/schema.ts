@@ -22,6 +22,10 @@ export const typeDefs = `#graphql
     reviews: [Review!]
   }
 
+  type Counter {
+    value: Int!
+  }
+
   type Query {
     reviews: [Review]
     review(id: ID!): Review
@@ -29,12 +33,17 @@ export const typeDefs = `#graphql
     game(id: ID!): Game
     authors: [Author ]
     author(id: ID!): Author
+    counter: Counter
   }
 
   type Mutation {
     deleteGame(id: ID!): [Game]
     addGame(game: AddGameInput!): Game
     updateGame(id: ID!, edits: EditGameInput): Game
+
+    incrementCounter(by:Int):Counter
+    decrementCounter(by:Int):Counter
+    changeCounter(newValue:Int!):Counter
   }
 
   input AddGameInput {

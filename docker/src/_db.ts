@@ -22,6 +22,11 @@
   { id: '7', rating:10, content: 'lorem ipsum', author_id: '3', game_id: '1'},
 ]
 
+const ctr = { value: 0 }
+
 export const db = {
-  games, authors, reviews
-}
+  games,
+  authors,
+  reviews,
+  ctr,
+};

@@ -1,0 +1,5 @@
+query Counter {
+    counter {
+        value
+    }
+}

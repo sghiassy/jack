@@ -1,0 +1,12 @@
+{
+  "name": "android",
+  "version": "1.0.0",
+  "description": "This is the Android Implementation of JACK",
+  "main": "index.js",
+  "scripts": {
+    "graphql:updateServer": "./gradlew :app:downloadServiceApolloSchemaFromIntrospection",
+    "graphql:updateSchema": "./gradlew app:generateApolloSources"
+  },
+  "author": "Shaheen Ghiassy <shaheen.ghiassy@gmail.com>",
+  "license": "ISC"
+}

@@ -6,7 +6,12 @@
   "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "start": "npm run compile && node ./dist/index.js",
+    "docker:context:default": "docker context use default",
+    "docker:context:hostinger": "docker context use hostinger",
+    "docker:build:image": "npm run docker:context:default && docker build --platform linux/amd64 -t sghiassy/jack .",
+    "docker:push": "docker push sghiassy/jack:latest",
+    "docker:deploy": "npm run docker:context:hostinger && docker stack deploy -c docker-compose.yml myapp"
   },
   "author": "Shaheen Ghiassy <shaheen.ghiassy@gmail.com>",
   "license": "ISC",
