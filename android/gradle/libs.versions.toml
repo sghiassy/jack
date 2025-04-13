@@ -1,5 +1,6 @@
 [versions]
 agp = "8.9.1"
+apolloHttpCache = "4.1.1"
 apolloRuntime = "3.8.5"
 apolloRuntimeVersion = "4.1.1"
 hiltAndroid = "2.51.1"
@@ -17,6 +18,7 @@ composeBom = "2024.09.00"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose" }
+apollo-http-cache = { module = "com.apollographql.apollo:apollo-http-cache", version.ref = "apolloHttpCache" }
 apollo-runtime = { module = "com.apollographql.apollo3:apollo-runtime", version.ref = "apolloRuntime" }
 apollographql-apollo-runtime = { module = "com.apollographql.apollo:apollo-runtime", version.ref = "apolloRuntimeVersion" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hiltAndroid" }

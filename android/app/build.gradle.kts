@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.shaheenghiassy.jack"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -41,6 +41,7 @@ android {
 
 dependencies {
     implementation(libs.apollographql.apollo.runtime)
+    implementation(libs.apollo.http.cache)
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.lifecycle.viewmodel.compose)

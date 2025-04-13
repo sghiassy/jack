@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 
 class CounterRepositoryImpl(context : Context): CounterRepository {
 //    private val diskRepository = DiskDatasourceImpl(context)
-    private val apiRepository = APIDatasourceImpl()
+    private val apiRepository = APIDatasourceImpl(context)
 
     private val _myFlow = MutableSharedFlow<CounterModel>()
     override val myFlow: Flow<CounterModel> = _myFlow.asSharedFlow()
