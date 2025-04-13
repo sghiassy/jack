@@ -1,0 +1,14 @@
+{
+  "name": "jack",
+  "version": "1.0.0",
+  "description": "## What is JACK? JACK stands for **Just a Counter, K?**",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "author": "Shaheen Ghiassy <shaheen.ghiassy@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
