@@ -37,6 +37,14 @@ android {
     buildFeatures {
         compose = true
     }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+        unitTests.all {
+            it.jvmArgs("-XX:+EnableDynamicAgentLoading") // remove warning for Java Agents modifying the JVM (this is necessary for the MockK library)
+        }
+    }
 }
 
 dependencies {
@@ -55,6 +63,12 @@ dependencies {
     implementation(libs.apollo.runtime)
     implementation(libs.kotlinx.coroutines.core)
     testImplementation(libs.junit)
+    testImplementation("org.robolectric:robolectric:4.13")
+    testImplementation("androidx.compose.ui:ui-test-junit4:1.7.5")
+    testImplementation("androidx.compose.ui:ui-test-manifest:1.7.5")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+    testImplementation("io.mockk:mockk:1.13.13")
+    testImplementation("io.mockk:mockk-android:1.13.13")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
