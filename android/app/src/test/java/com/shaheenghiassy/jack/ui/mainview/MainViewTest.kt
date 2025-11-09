@@ -1,6 +1,5 @@
 package com.shaheenghiassy.jack.ui.mainview
 
-import android.app.Application
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createComposeRule
@@ -13,7 +12,6 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.mockk
 import io.mockk.verify
-import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -33,14 +31,10 @@ class MainViewTest {
     val composeTestRule = createComposeRule()
 
     private lateinit var mockViewModel: MainViewModel
-    private lateinit var mockApplication: Application
-    private val uiStateFlow = MutableStateFlow<MainViewUIState>(MainViewUIState.Loading)
 
     @Before
     fun setUp() {
-        mockApplication = mockk(relaxed = true)
         mockViewModel = mockk(relaxed = true) {
-            every { uiState } returns uiStateFlow
             every { increment() } just Runs
             every { decrement() } just Runs
         }
@@ -49,7 +43,6 @@ class MainViewTest {
     @Test
     fun `should display Loading text when UI state is Loading`() {
         // Given
-        uiStateFlow.value = MainViewUIState.Loading
 
         // When
         composeTestRule.setContent {
@@ -69,7 +62,6 @@ class MainViewTest {
         // Given
         val counterValue = 42
         val loadedState = MainViewUIState.Loaded(CounterModel(counterValue))
-        uiStateFlow.value = loadedState
 
         // When
         composeTestRule.setContent {
@@ -88,7 +80,6 @@ class MainViewTest {
     fun `should display default counter value 420 when UI state is Loaded with default model`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel())
-        uiStateFlow.value = loadedState
 
         // When
         composeTestRule.setContent {
@@ -107,7 +98,6 @@ class MainViewTest {
     fun `should display Increment and Decrement buttons`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(10))
-        uiStateFlow.value = loadedState
 
         // When
         composeTestRule.setContent {
@@ -127,7 +117,6 @@ class MainViewTest {
     fun `should call viewModel increment when Increment button is clicked`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(10))
-        uiStateFlow.value = loadedState
 
         composeTestRule.setContent {
             MainView(
@@ -148,7 +137,6 @@ class MainViewTest {
     fun `should call viewModel decrement when Decrement button is clicked`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(10))
-        uiStateFlow.value = loadedState
 
         composeTestRule.setContent {
             MainView(
@@ -169,7 +157,6 @@ class MainViewTest {
     fun `should call viewModel increment multiple times when button clicked multiple times`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(5))
-        uiStateFlow.value = loadedState
 
         composeTestRule.setContent {
             MainView(
@@ -192,7 +179,6 @@ class MainViewTest {
     fun `should handle both increment and decrement clicks in sequence`() {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(100))
-        uiStateFlow.value = loadedState
 
         composeTestRule.setContent {
             MainView(
@@ -215,7 +201,6 @@ class MainViewTest {
     @Test
     fun `should display Empty text when UI state is Empty`() {
         // Given
-        uiStateFlow.value = MainViewUIState.Empty
 
         // When
         composeTestRule.setContent {
@@ -235,7 +220,6 @@ class MainViewTest {
         // Given
         val loadedState = MainViewUIState.Loaded(CounterModel(25))
         val customPadding = PaddingValues(all = 16.dp)
-        uiStateFlow.value = loadedState
 
         // When
         composeTestRule.setContent {
