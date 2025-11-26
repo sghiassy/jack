@@ -6,7 +6,7 @@ Following series at: https://www.youtube.com/watch?v=ZmL46xVdYzM
 
 ## Access Server
 
-`ssh root@168.231.65.34`
+`ssh root@72.61.65.125`
 
 ## Server Setup
 
@@ -21,7 +21,7 @@ When setting up a new VPS, you need to install Docker. Just follow the instructi
 ## Dev Setup
 
 Create a Docker Context
-`docker context create hostinger --docker "host=ssh://root@168.231.65.34"`
+`docker context create hostinger --docker "host=ssh://root@72.61.65.125"`
 
 Now you can switch context
 
