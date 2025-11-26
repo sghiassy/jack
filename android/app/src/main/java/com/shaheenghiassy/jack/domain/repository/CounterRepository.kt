@@ -4,7 +4,6 @@ import com.shaheenghiassy.jack.data.models.CounterModel
 import kotlinx.coroutines.flow.Flow
 
 interface CounterRepository {
-
     val counterFlow: Flow<CounterModel>
 
     suspend fun initialize()
@@ -13,7 +12,7 @@ interface CounterRepository {
 
     suspend fun decrement()
 
-    suspend fun change(newValue:Int)
+    suspend fun change(newValue: Int)
 
     suspend fun switchDatasourceToAPI()
 

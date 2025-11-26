@@ -8,11 +8,11 @@ import com.shaheenghiassy.jack.domain.datasource.DiskDatasource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class APIDatasourceImpl:DiskDatasource {
-
-    val apolloClient = ApolloClient.Builder()
-        .serverUrl("https://jack.ghiassy.com/graphql")
-        .build()
+class APIDatasourceImpl : DiskDatasource {
+    val apolloClient =
+        ApolloClient.Builder()
+            .serverUrl("https://jack.ghiassy.com/graphql")
+            .build()
 
     override suspend fun readCounter(): Int? {
         return withContext(Dispatchers.IO) {
@@ -20,7 +20,6 @@ class APIDatasourceImpl:DiskDatasource {
             Log.d("shizz", "readCounter ${response.data}")
             response.data?.counter?.value
         }
-
     }
 
     override suspend fun writeCounter(value: Int) {
@@ -29,5 +28,4 @@ class APIDatasourceImpl:DiskDatasource {
             Log.d("shizz", "writeCounter ${response.data}")
         }
     }
-
 }

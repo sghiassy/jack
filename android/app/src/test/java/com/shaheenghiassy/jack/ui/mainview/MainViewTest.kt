@@ -26,7 +26,6 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [33], manifest = Config.NONE)
 class MainViewTest {
-
     @get:Rule
     val composeTestRule = createComposeRule()
 
@@ -34,10 +33,11 @@ class MainViewTest {
 
     @Before
     fun setUp() {
-        mockViewModel = mockk(relaxed = true) {
-            every { increment() } just Runs
-            every { decrement() } just Runs
-        }
+        mockViewModel =
+            mockk(relaxed = true) {
+                every { increment() } just Runs
+                every { decrement() } just Runs
+            }
     }
 
     @Test
@@ -49,7 +49,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = MainViewUIState.Loading,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -68,7 +68,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -86,7 +86,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -104,7 +104,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -122,7 +122,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -142,7 +142,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -162,7 +162,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -184,7 +184,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -207,7 +207,7 @@ class MainViewTest {
             MainView(
                 innerPadding = PaddingValues(0.dp),
                 uiState = MainViewUIState.Empty,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 
@@ -226,7 +226,7 @@ class MainViewTest {
             MainView(
                 innerPadding = customPadding,
                 uiState = loadedState,
-                viewModel = mockViewModel
+                viewModel = mockViewModel,
             )
         }
 

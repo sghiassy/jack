@@ -6,8 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.File
 
-class DiskDatasourceImpl(context: Context): DiskDatasource {
-
+class DiskDatasourceImpl(context: Context) : DiskDatasource {
     private val file: File = File(context.filesDir, "counter.txt")
 
     init {

@@ -5,7 +5,8 @@
       "Bash(./gradlew testDebugUnitTest:*)",
       "Bash(cat gradle/libs.versions.toml)",
       "Bash(find app/src/main/graphql -name \"*.graphql\" -exec head -20 {})",
-      "Bash(./gradlew :app:compileDebugKotlin:*)"
+      "Bash(./gradlew :app:compileDebugKotlin:*)",
+      "Bash(./gradlew tasks:*)"
     ],
     "deny": [],
     "ask": []

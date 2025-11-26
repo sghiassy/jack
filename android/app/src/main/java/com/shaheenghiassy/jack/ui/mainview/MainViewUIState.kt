@@ -8,6 +8,6 @@ sealed interface MainViewUIState {
     data object Loading : MainViewUIState
 
     data class Loaded(
-        val model: CounterModel
+        val model: CounterModel,
     ) : MainViewUIState
 }

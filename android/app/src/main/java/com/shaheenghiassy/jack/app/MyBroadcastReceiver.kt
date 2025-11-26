@@ -9,8 +9,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class MyBroadcastReceiver(): BroadcastReceiver() {
-
+class MyBroadcastReceiver() : BroadcastReceiver() {
     private val DEFAULT_VALUE = 1
     private val receiverScope = CoroutineScope(Dispatchers.IO)
 
@@ -18,7 +17,10 @@ class MyBroadcastReceiver(): BroadcastReceiver() {
         Log.d("shizz", "MyBroadcastReceiver instance created")
     }
 
-    override fun onReceive(context: Context?, intent: Intent?) {
+    override fun onReceive(
+        context: Context?,
+        intent: Intent?,
+    ) {
         if (context !== null && intent !== null) {
             val counterRepository = CounterRepositoryImpl(context)
             val counterValue = intent.getIntExtra("count", DEFAULT_VALUE)

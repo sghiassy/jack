@@ -30,21 +30,21 @@ import com.shaheenghiassy.jack.ui.components.CounterText
 import com.shaheenghiassy.jack.usecase.stateToString
 
 @Composable
-fun MainView(
-    innerPadding: PaddingValues
-) {
+fun MainView(innerPadding: PaddingValues) {
     val viewModel: MainViewModel = viewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     var customNumber by remember { mutableStateOf(0) }
 
     Box(
-        modifier = Modifier
-            .fillMaxSize() // Make the Box take up the full screen
-            .padding(innerPadding), // Apply the innerPadding to the Box
-        contentAlignment = Alignment.Center // Center the contents inside the Box
+        modifier =
+            Modifier
+                .fillMaxSize() // Make the Box take up the full screen
+                .padding(innerPadding),
+        // Apply the innerPadding to the Box
+        contentAlignment = Alignment.Center, // Center the contents inside the Box
     ) {
         Column(
-            horizontalAlignment = Alignment.CenterHorizontally // Center the contents horizontally
+            horizontalAlignment = Alignment.CenterHorizontally, // Center the contents horizontally
         ) {
             CounterText(
                 modifier = Modifier.padding(15.dp),
@@ -54,11 +54,12 @@ fun MainView(
             Spacer(modifier = Modifier.height(16.dp))
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 15.dp),
+                modifier =
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 15.dp),
                 horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 OutlinedTextField(
                     value = customNumber.toString(),
@@ -69,14 +70,13 @@ fun MainView(
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     enabled = uiState != MainViewUIState.Loading,
                     modifier = Modifier.width(150.dp),
-                    singleLine = true
+                    singleLine = true,
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Button(
                     onClick = {
                         val newNumber = customNumber.toInt()
                         viewModel.setValue(newNumber)
-
                     },
                     enabled = uiState != MainViewUIState.Loading,
                 ) {
@@ -87,44 +87,51 @@ fun MainView(
             Spacer(modifier = Modifier.height(8.dp))
 
             Row(
-                modifier = Modifier
-                    .fillMaxWidth() // Make the row take up the maximum space horizontally.
-                    .padding(15.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
+                modifier =
+                    Modifier
+                        .fillMaxWidth() // Make the row take up the maximum space horizontally.
+                        .padding(15.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly, // Distribute the buttons evenly
             ) {
                 Button(
-                    enabled = uiState != MainViewUIState.Loading,
+                    enabled =
+                        uiState != MainViewUIState.Loading,
                     onClick = {
                         viewModel.increment()
-                }) {
+                    },
+                ) {
                     Text("Increment")
                 }
                 Button(
                     enabled = uiState != MainViewUIState.Loading,
                     onClick = {
                         viewModel.decrement()
-                }) {
+                    },
+                ) {
                     Text("Decrement")
                 }
             }
             Row(
-                modifier = Modifier
-                    .fillMaxWidth() // Make the row take up the maximum space horizontally.
-                    .padding(15.dp),
-                horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
+                modifier =
+                    Modifier
+                        .fillMaxWidth() // Make the row take up the maximum space horizontally.
+                        .padding(15.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly, // Distribute the buttons evenly
             ) {
                 Button(
                     enabled = uiState != MainViewUIState.Loading,
                     onClick = {
                         viewModel.switchDatasourceToDisk()
-                }) {
+                    },
+                ) {
                     Text("Switch to Disk")
                 }
                 Button(
                     enabled = uiState != MainViewUIState.Loading,
                     onClick = {
                         viewModel.switchDatasourceToAPI()
-                }) {
+                    },
+                ) {
                     Text("Switch to API")
                 }
             }

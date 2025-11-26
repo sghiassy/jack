@@ -17,28 +17,29 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MainActivity @Inject constructor() : ComponentActivity() {
+class MainActivity
+    @Inject
+    constructor() : ComponentActivity() {
+        @Inject lateinit var myBroadcastReceiver: MyBroadcastReceiver
 
-    @Inject lateinit var myBroadcastReceiver: MyBroadcastReceiver
-
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        val filter = IntentFilter("CHANGE_VALUE")
-        registerReceiver(myBroadcastReceiver, filter, RECEIVER_EXPORTED)
-        setContent {
-            JACKTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    MainView(innerPadding)
+        @RequiresApi(Build.VERSION_CODES.TIRAMISU)
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            val filter = IntentFilter("CHANGE_VALUE")
+            registerReceiver(myBroadcastReceiver, filter, RECEIVER_EXPORTED)
+            setContent {
+                JACKTheme {
+                    Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                        MainView(innerPadding)
+                    }
                 }
             }
         }
-    }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        Log.d("shizz", "MyBroadcastReceiver is being unregistered")
-        unregisterReceiver(myBroadcastReceiver)
+        override fun onDestroy() {
+            super.onDestroy()
+            Log.d("shizz", "MyBroadcastReceiver is being unregistered")
+            unregisterReceiver(myBroadcastReceiver)
+        }
     }
-}

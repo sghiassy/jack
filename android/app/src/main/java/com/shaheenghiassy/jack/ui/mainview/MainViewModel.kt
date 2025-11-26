@@ -13,54 +13,59 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(application: Application, private val counterRepository: CounterRepository): AndroidViewModel(application) {
-    private val _uiState = MutableStateFlow<MainViewUIState>(MainViewUIState.Loading)
-    val uiState: StateFlow<MainViewUIState> = _uiState.asStateFlow()
+class MainViewModel
+    @Inject
+    constructor(
+        application: Application,
+        private val counterRepository: CounterRepository,
+    ) : AndroidViewModel(application) {
+        private val _uiState = MutableStateFlow<MainViewUIState>(MainViewUIState.Loading)
+        val uiState: StateFlow<MainViewUIState> = _uiState.asStateFlow()
 
-    init {
-        // Setup collector
-        viewModelScope.launch {
-            counterRepository.counterFlow.collect { counterModel ->
-                _uiState.value = MainViewUIState.Loaded(counterModel)
+        init {
+            // Setup collector
+            viewModelScope.launch {
+                counterRepository.counterFlow.collect { counterModel ->
+                    _uiState.value = MainViewUIState.Loaded(counterModel)
+                }
+            }
+
+            // Grab initial values
+            viewModelScope.launch {
+                counterRepository.initialize()
             }
         }
 
-        // Grab initial values
-        viewModelScope.launch {
-            counterRepository.initialize()
+        fun setValue(newNumber: Int) {
+            _uiState.value = MainViewUIState.Loading
+            viewModelScope.launch(Dispatchers.IO) {
+                counterRepository.change(newNumber)
+            }
         }
-    }
 
-    fun setValue(newNumber:Int) {
-        _uiState.value = MainViewUIState.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.change(newNumber)
+        fun increment() {
+            _uiState.value = MainViewUIState.Loading
+            viewModelScope.launch(Dispatchers.IO) {
+                counterRepository.increment()
+            }
         }
-    }
 
-    fun increment() {
-        _uiState.value = MainViewUIState.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.increment()
+        fun decrement() {
+            _uiState.value = MainViewUIState.Loading
+            viewModelScope.launch(Dispatchers.IO) {
+                counterRepository.decrement()
+            }
         }
-    }
 
-    fun decrement() {
-        _uiState.value = MainViewUIState.Loading
-        viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.decrement()
+        fun switchDatasourceToDisk() {
+            viewModelScope.launch(Dispatchers.IO) {
+                counterRepository.switchDatasourceToDisk()
+            }
         }
-    }
 
-    fun switchDatasourceToDisk() {
-        viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.switchDatasourceToDisk()
+        fun switchDatasourceToAPI() {
+            viewModelScope.launch(Dispatchers.IO) {
+                counterRepository.switchDatasourceToAPI()
+            }
         }
     }
-
-    fun switchDatasourceToAPI() {
-        viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.switchDatasourceToAPI()
-        }
-    }
-}

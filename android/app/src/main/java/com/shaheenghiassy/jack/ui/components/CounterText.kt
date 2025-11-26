@@ -9,11 +9,14 @@ import androidx.compose.ui.unit.sp
 import com.shaheenghiassy.jack.ui.theme.JACKTheme
 
 @Composable
-fun CounterText(modifier: Modifier = Modifier, str: String) {
+fun CounterText(
+    modifier: Modifier = Modifier,
+    str: String,
+) {
     Text(
         text = str,
         modifier = modifier,
-        style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp)
+        style = MaterialTheme.typography.headlineLarge.copy(fontSize = 40.sp),
     )
 }
 

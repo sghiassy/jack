@@ -42,7 +42,9 @@ android {
             isIncludeAndroidResources = true
         }
         unitTests.all {
-            it.jvmArgs("-XX:+EnableDynamicAgentLoading") // remove warning for Java Agents modifying the JVM (this is necessary for the MockK library)
+            it.jvmArgs(
+                "-XX:+EnableDynamicAgentLoading",
+            ) // remove warning for Java Agents modifying the JVM (this is necessary for the MockK library)
         }
     }
 }
@@ -90,5 +92,4 @@ apollo {
             schemaFile.set(file("src/main/graphql/schema.graphqls"))
         }
     }
-
 }

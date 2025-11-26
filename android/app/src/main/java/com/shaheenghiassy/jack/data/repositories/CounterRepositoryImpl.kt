@@ -10,11 +10,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 
-
-class CounterRepositoryImpl(context : Context): CounterRepository {
+class CounterRepositoryImpl(context: Context) : CounterRepository {
     private val diskRepository = DiskDatasourceImpl(context)
     private val apiRepository = APIDatasourceImpl()
-    private var currentRepository:DiskDatasource = apiRepository
+    private var currentRepository: DiskDatasource = apiRepository
 
     private val _counterFlow = MutableSharedFlow<CounterModel>()
     override val counterFlow: Flow<CounterModel> = _counterFlow.asSharedFlow()
@@ -47,7 +46,6 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
         currentRepository = apiRepository
         val valueFromDatasource = currentRepository.readCounter() ?: 0
         _counterFlow.emit(CounterModel(valueFromDatasource))
-
     }
 
     override suspend fun switchDatasourceToDisk() {

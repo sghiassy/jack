@@ -14,10 +14,11 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class AppModule {
-
     @Provides
     @Singleton
-    fun provideCounterRepository(@ApplicationContext context: Context): CounterRepository {
+    fun provideCounterRepository(
+        @ApplicationContext context: Context,
+    ): CounterRepository {
         return CounterRepositoryImpl(context)
     }
 
@@ -27,5 +28,3 @@ class AppModule {
         return MyBroadcastReceiver()
     }
 }
-
-

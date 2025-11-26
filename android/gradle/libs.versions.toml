@@ -5,6 +5,7 @@ apolloRuntimeVersion = "4.1.1"
 hiltAndroid = "2.51.1"
 hiltAndroidCompiler = "2.51.1"
 kotlin = "2.0.21"
+ktlint = "12.1.2"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -52,4 +53,5 @@ ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest", version.re
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 
