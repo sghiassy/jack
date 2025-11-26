@@ -1,6 +1,8 @@
 # README
 
-Following series at: https://www.youtube.com/watch?v=ZmL46xVdYzM
+Following series at: https://www.youtube.com/watch?v=ZmL46xVdYzM.
+
+Also downloaded a backup copy that can be viewed in [Google Chrome](https://drive.google.com/open?id=1LqqZ8PJ5D1ycOjIOgOBaC8J1bB3vHmr5&usp=drive_fs)
 
 `jack.ghiassy.com`
 
