@@ -26,6 +26,9 @@ class MainViewModel @Inject constructor(application: Application, private val co
     private val _currentDatasource = MutableStateFlow(counterRepository.getCurrentDatasource())
     val currentDatasource: StateFlow<DatasourceType> = _currentDatasource.asStateFlow()
 
+    private val _isOperationInProgress = MutableStateFlow(false)
+    val isOperationInProgress: StateFlow<Boolean> = _isOperationInProgress.asStateFlow()
+
     init {
         viewModelScope.launch {
             counterRepository.initialize()
@@ -33,30 +36,54 @@ class MainViewModel @Inject constructor(application: Application, private val co
     }
 
     fun increment() {
+        if (_isOperationInProgress.value) return
         viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.increment()
+            _isOperationInProgress.value = true
+            try {
+                counterRepository.increment()
+            } finally {
+                _isOperationInProgress.value = false
+            }
         }
     }
 
     fun decrement() {
+        if (_isOperationInProgress.value) return
         viewModelScope.launch(Dispatchers.IO) {
-            counterRepository.decrement()
+            _isOperationInProgress.value = true
+            try {
+                counterRepository.decrement()
+            } finally {
+                _isOperationInProgress.value = false
+            }
         }
     }
 
     fun switchToDisk() {
+        if (_isOperationInProgress.value) return
+        _isOperationInProgress.value = true
         counterRepository.switchToDisk()
         _currentDatasource.value = DatasourceType.DISK
         viewModelScope.launch {
-            counterRepository.initialize()
+            try {
+                counterRepository.initialize()
+            } finally {
+                _isOperationInProgress.value = false
+            }
         }
     }
 
     fun switchToAPI() {
+        if (_isOperationInProgress.value) return
+        _isOperationInProgress.value = true
         counterRepository.switchToAPI()
         _currentDatasource.value = DatasourceType.API
         viewModelScope.launch {
-            counterRepository.initialize()
+            try {
+                counterRepository.initialize()
+            } finally {
+                _isOperationInProgress.value = false
+            }
         }
     }
 }

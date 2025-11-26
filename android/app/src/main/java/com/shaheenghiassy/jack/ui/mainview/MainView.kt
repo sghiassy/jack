@@ -31,6 +31,7 @@ fun MainView(
     viewModel: MainViewModel
 ) {
     val currentDatasource by viewModel.currentDatasource.collectAsState()
+    val isOperationInProgress by viewModel.isOperationInProgress.collectAsState()
 
     Box(
         modifier = Modifier
@@ -51,14 +52,16 @@ fun MainView(
                     .padding(15.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
             ) {
-                Button(onClick = {
-                    viewModel.increment()
-                }) {
+                Button(
+                    onClick = { viewModel.increment() },
+                    enabled = !isOperationInProgress
+                ) {
                     Text("Increment")
                 }
-                Button(onClick = {
-                    viewModel.decrement()
-                }) {
+                Button(
+                    onClick = { viewModel.decrement() },
+                    enabled = !isOperationInProgress
+                ) {
                     Text("Decrement")
                 }
             }
@@ -79,6 +82,7 @@ fun MainView(
             ) {
                 Button(
                     onClick = { viewModel.switchToDisk() },
+                    enabled = !isOperationInProgress,
                     colors = if (currentDatasource == DatasourceType.DISK) {
                         ButtonDefaults.buttonColors()
                     } else {
@@ -89,6 +93,7 @@ fun MainView(
                 }
                 Button(
                     onClick = { viewModel.switchToAPI() },
+                    enabled = !isOperationInProgress,
                     colors = if (currentDatasource == DatasourceType.API) {
                         ButtonDefaults.buttonColors()
                     } else {
