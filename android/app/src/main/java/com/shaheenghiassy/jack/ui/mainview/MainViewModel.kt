@@ -37,4 +37,16 @@ class MainViewModel @Inject constructor(application: Application, private val co
             counterRepository.decrement()
         }
     }
+
+    fun switchDatasourceToDisk() {
+        viewModelScope.launch(Dispatchers.IO) {
+            counterRepository.switchDatasourceToDisk()
+        }
+    }
+
+    fun switchDatasourceToAPI() {
+        viewModelScope.launch(Dispatchers.IO) {
+            counterRepository.switchDatasourceToAPI()
+        }
+    }
 }

@@ -53,6 +53,23 @@ fun MainView(
                     Text("Decrement")
                 }
             }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth() // Make the row take up the maximum space horizontally.
+                    .padding(15.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
+            ) {
+                Button(onClick = {
+                    viewModel.switchDatasourceToDisk()
+                }) {
+                    Text("Switch to Disk")
+                }
+                Button(onClick = {
+                    viewModel.switchDatasourceToAPI()
+                }) {
+                    Text("Switch to API")
+                }
+            }
         }
     }
 }

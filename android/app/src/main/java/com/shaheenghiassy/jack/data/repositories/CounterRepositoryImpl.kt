@@ -20,36 +20,41 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
     override val counterFlow: Flow<CounterModel> = _counterFlow.asSharedFlow()
 
     override suspend fun initialize() {
-        val valueFromDisk = currentRepository.readCounter() ?: 0
-        _counterFlow.emit(CounterModel(valueFromDisk))
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        _counterFlow.emit(CounterModel(valueFromDatasource))
     }
 
     override suspend fun increment() {
-        val valueFromDisk = currentRepository.readCounter() ?: 0
-        val newValue = valueFromDisk + 1
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        val newValue = valueFromDatasource + 1
         currentRepository.writeCounter(newValue)
         _counterFlow.emit(CounterModel(newValue))
     }
 
     override suspend fun decrement() {
-        val valueFromDisk = currentRepository.readCounter() ?: 0
-        val newValue = valueFromDisk - 1
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        val newValue = valueFromDatasource - 1
         currentRepository.writeCounter(newValue)
         _counterFlow.emit(CounterModel(newValue))
     }
 
     override suspend fun change(newValue: Int) {
-        val valueFromDisk = currentRepository.readCounter() ?: 0
-        val changedValue = valueFromDisk + newValue
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        val changedValue = valueFromDatasource + newValue
         currentRepository.writeCounter(changedValue)
         _counterFlow.emit(CounterModel(changedValue))
     }
 
-    override fun switchDatasourceToAPI() {
+    override suspend fun switchDatasourceToAPI() {
         currentRepository = apiRepository
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        _counterFlow.emit(CounterModel(valueFromDatasource))
+
     }
 
-    override fun switchDatasourceToDisk() {
+    override suspend fun switchDatasourceToDisk() {
         currentRepository = diskRepository
+        val valueFromDatasource = currentRepository.readCounter() ?: 0
+        _counterFlow.emit(CounterModel(valueFromDatasource))
     }
 }

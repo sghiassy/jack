@@ -15,7 +15,7 @@ interface CounterRepository {
 
     suspend fun change(newValue:Int)
 
-    fun switchDatasourceToAPI()
+    suspend fun switchDatasourceToAPI()
 
-    fun switchDatasourceToDisk()
+    suspend fun switchDatasourceToDisk()
 }
