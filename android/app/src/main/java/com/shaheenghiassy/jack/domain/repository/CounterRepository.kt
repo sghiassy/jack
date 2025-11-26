@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface CounterRepository {
 
-    val myFlow: Flow<CounterModel>
+    val counterFlow: Flow<CounterModel>
 
     suspend fun initialize()
 
@@ -14,4 +14,8 @@ interface CounterRepository {
     suspend fun decrement()
 
     suspend fun change(newValue:Int)
+
+    fun switchDatasourceToAPI()
+
+    fun switchDatasourceToDisk()
 }

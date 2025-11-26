@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(application: Application, private val counterRepository: CounterRepository): AndroidViewModel(application) {
-    val uiState: StateFlow<MainViewUIState> = counterRepository.myFlow
+    val uiState: StateFlow<MainViewUIState> = counterRepository.counterFlow
         .map { ctr ->
             MainViewUIState.Loaded(ctr)
         }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(), MainViewUIState.Loading)
