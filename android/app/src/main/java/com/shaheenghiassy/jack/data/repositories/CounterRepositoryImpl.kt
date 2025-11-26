@@ -5,6 +5,7 @@ import com.shaheenghiassy.jack.data.datasources.APIDatasourceImpl
 import com.shaheenghiassy.jack.data.datasources.DiskDatasourceImpl
 import com.shaheenghiassy.jack.data.models.CounterModel
 import com.shaheenghiassy.jack.domain.repository.CounterRepository
+import com.shaheenghiassy.jack.domain.repository.DatasourceType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -14,10 +15,6 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
     private val diskRepository = DiskDatasourceImpl(context)
     private val apiRepository = APIDatasourceImpl()
 
-    enum class DatasourceType {
-        DISK, API
-    }
-
     private var activeDatasource: DatasourceType = DatasourceType.DISK
 
     private val currentDatasource
@@ -26,16 +23,20 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
             DatasourceType.API -> apiRepository
         }
 
-    fun switchToDisk() {
+    override fun switchToDisk() {
         activeDatasource = DatasourceType.DISK
     }
 
-    fun switchToAPI() {
+    override fun switchToAPI() {
         activeDatasource = DatasourceType.API
     }
 
-    fun setDatasource(type: DatasourceType) {
+    override fun setDatasource(type: DatasourceType) {
         activeDatasource = type
+    }
+
+    override fun getCurrentDatasource(): DatasourceType {
+        return activeDatasource
     }
 
     private val _myFlow = MutableSharedFlow<CounterModel>()
