@@ -26,6 +26,7 @@ fun MainView(
 ) {
     val viewModel: MainViewModel = viewModel()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     Box(
         modifier = Modifier
             .fillMaxSize() // Make the Box take up the full screen
@@ -45,12 +46,16 @@ fun MainView(
                     .padding(15.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
             ) {
-                Button(onClick = {
+                Button(
+                    enabled = uiState != MainViewUIState.Loading,
+                    onClick = {
                     viewModel.increment()
                 }) {
                     Text("Increment")
                 }
-                Button(onClick = {
+                Button(
+                    enabled = uiState != MainViewUIState.Loading,
+                    onClick = {
                     viewModel.decrement()
                 }) {
                     Text("Decrement")
@@ -62,12 +67,16 @@ fun MainView(
                     .padding(15.dp),
                 horizontalArrangement = Arrangement.SpaceEvenly // Distribute the buttons evenly
             ) {
-                Button(onClick = {
+                Button(
+                    enabled = uiState != MainViewUIState.Loading,
+                    onClick = {
                     viewModel.switchDatasourceToDisk()
                 }) {
                     Text("Switch to Disk")
                 }
-                Button(onClick = {
+                Button(
+                    enabled = uiState != MainViewUIState.Loading,
+                    onClick = {
                     viewModel.switchDatasourceToAPI()
                 }) {
                     Text("Switch to API")
