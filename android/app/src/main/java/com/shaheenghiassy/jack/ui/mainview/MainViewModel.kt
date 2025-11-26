@@ -31,6 +31,13 @@ class MainViewModel @Inject constructor(application: Application, private val co
         }
     }
 
+    fun setValue(newNumber:Int) {
+        _uiState.value = MainViewUIState.Loading
+        viewModelScope.launch(Dispatchers.IO) {
+            counterRepository.change(newNumber)
+        }
+    }
+
     fun increment() {
         _uiState.value = MainViewUIState.Loading
         viewModelScope.launch(Dispatchers.IO) {

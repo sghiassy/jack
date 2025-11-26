@@ -39,10 +39,8 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
     }
 
     override suspend fun change(newValue: Int) {
-        val valueFromDatasource = currentRepository.readCounter() ?: 0
-        val changedValue = valueFromDatasource + newValue
-        currentRepository.writeCounter(changedValue)
-        _counterFlow.emit(CounterModel(changedValue))
+        currentRepository.writeCounter(newValue)
+        _counterFlow.emit(CounterModel(newValue))
     }
 
     override suspend fun switchDatasourceToAPI() {
