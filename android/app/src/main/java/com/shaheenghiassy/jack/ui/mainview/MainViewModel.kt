@@ -86,4 +86,16 @@ class MainViewModel @Inject constructor(application: Application, private val co
             }
         }
     }
+
+    fun setValue(value: Int) {
+        if (_isOperationInProgress.value) return
+        viewModelScope.launch(Dispatchers.IO) {
+            _isOperationInProgress.value = true
+            try {
+                counterRepository.setValue(value)
+            } finally {
+                _isOperationInProgress.value = false
+            }
+        }
+    }
 }

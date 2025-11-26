@@ -67,4 +67,9 @@ class CounterRepositoryImpl(context : Context): CounterRepository {
         currentDatasource.writeCounter(changedValue)
         _myFlow.emit(CounterModel(changedValue))
     }
+
+    override suspend fun setValue(value: Int) {
+        currentDatasource.writeCounter(value)
+        _myFlow.emit(CounterModel(value))
+    }
 }
