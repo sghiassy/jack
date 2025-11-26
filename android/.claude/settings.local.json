@@ -2,7 +2,9 @@
   "permissions": {
     "allow": [
       "Bash(./gradlew test:*)",
-      "Bash(./gradlew testDebugUnitTest:*)"
+      "Bash(./gradlew testDebugUnitTest:*)",
+      "Bash(cat gradle/libs.versions.toml)",
+      "Bash(find app/src/main/graphql -name \"*.graphql\" -exec head -20 {})"
     ],
     "deny": [],
     "ask": []
